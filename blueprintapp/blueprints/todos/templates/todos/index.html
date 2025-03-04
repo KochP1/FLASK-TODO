@@ -1,22 +1,48 @@
 {% extends 'base.html' %}
-{% block title %} Todos {% endblock %}
+{% block title %} To dos {% endblock %}
 
 {% block content %}
-    <h1>Your to do's {{current_user.name}} {{current_user.lastName}}</h1>
-    <ul>
-        {% for topic in topics%}
-            <div>
-                {{topic.name}}
-                {% for todo in todos %}
-                    {% if topic.topId == todo.topId %}
-                        <ul>
-                            <li>{{todo.description}}</li>
-                        </ul>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </ul>
-    <a href="{{url_for('todos.create')}}">Ceate todo</a>
-    <a href="{{url_for('core.index')}}">Home</a>
+    <header class="todos-header">
+        <nav class="todos-nav">
+                <div class="logo">
+                    <a href="{{url_for('todos.index')}}" class="nav-link">
+                        <img src="../../../../img/to-do-list.png" alt="Todo logo" class="img-logo">
+                    </a>
+                    <h1>Hello, {{current_user.name}} {{current_user.lastName}}</h1> 
+                </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#" class="nav-link">todos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">tasks</a></li>
+                <li class="nav-item switch">
+                    <a class="toggle-theme" id="darkModeToggle" role="button">
+                        <i class="fas mb-2 mr-1 fa-moon theme-icon"></i>
+                    </a>
+                <li class="nav-item"><a href="{{url_for('people.logout')}}" class="nav-link">Log out</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">
+                    <div class="user_container">{{current_user.name[0]}}</div>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-wrapper">
+            {% for topic in topics%}
+                <div class="todo__container">
+                    <input type="text" name="topic" class="list-input topic-input" value="{{topic.name}}">
+                    {% for todo in todos %}
+                        {% if topic.topId == todo.topId %}
+                            <div class="check-container">
+                                <input type="checkbox" class="checkbox">
+                                <input type="text" name="todo" class="list-input" value="{{todo.description}}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="todo-options">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
 {% endblock %}

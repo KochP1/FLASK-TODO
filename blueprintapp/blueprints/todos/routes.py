@@ -7,14 +7,14 @@ from blueprintapp.blueprints.todos.models import Todo, Topic
 todos = Blueprint('todos', __name__, template_folder='templates')
 
 
-@todos.route('/', methods = ['GET', 'POST'])
+@todos.route('/')
 def index():
-    if request.method == 'GET':
-        userId = current_user.pid
-        topics = Topic.query.filter(Topic.pid == userId).all()
-        topId = Topic.topId
-        todos = Todo.query.filter(Todo.topId == topId).all()
-        return render_template('todos/index.html', topics = topics, todos = todos)
+    userId = current_user.pid
+    topics = Topic.query.filter(Topic.pid == userId).all()
+    topId = Topic.topId
+    todos = Todo.query.filter(Todo.topId == topId).all()
+    print(f'Hello , {topics}: {todos}')
+    return render_template('todos/index.html', topics = topics, todos = todos)
 
 @todos.route('/create', methods = ['GET', 'POST'])
 def create():

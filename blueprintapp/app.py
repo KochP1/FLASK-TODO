@@ -20,13 +20,11 @@ def create_app():
         return Person.query.get(pid)
 
     # import and register all blueprints
-    from blueprintapp.blueprints.core.routes import core
     from blueprintapp.blueprints.todos.routes import todos
     from blueprintapp.blueprints.people.routes import people
 
-    app.register_blueprint(core, url_prefix='/')
+    app.register_blueprint(people, url_prefix='/')
     app.register_blueprint(todos, url_prefix='/todos')
-    app.register_blueprint(people, url_prefix='/people')
 
     migrate = Migrate(app, db)
 

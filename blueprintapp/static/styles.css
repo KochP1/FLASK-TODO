@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    font-family: sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 *{
@@ -46,4 +46,120 @@ h1{
 
 .alert-message{
     color: red;
+}
+
+/* TODOS */
+
+.todos-nav{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 800px;
+    box-shadow: 0px 4px 6px #333;
+}
+
+.nav-list{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logo{
+    display: flex;
+    gap: 120px;
+}
+
+.user_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    color: #fff;
+    border-radius: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.img-logo{
+    width: 50px;
+    height: 50px;
+}
+
+.nav-link:hover{
+    color: #08568a !important;
+}
+
+.fa-moon{
+    color: #000;
+}
+
+.main-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 300px) !important;
+    grid-template-rows: repeat(3, max-content) !important;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    gap: 20px;
+}
+
+.todo__container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: max-content;
+    border-radius: 10px;
+    border: 1px solid #5c5a5a;
+    margin-top: 40px;
+}
+
+.check-container{
+    display: flex;
+    gap: 5px;
+}
+
+.checkbox{
+    margin-left: 5px;
+}
+
+.list-input {
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+}
+
+.list-input:focus {
+    border: none;
+    outline: none;
+}
+
+.topic-input{
+    font-size: 25px !important;
+    text-align: center;
+    border-bottom: 1px solid #333 !important;
+}
+
+.topic-input:focus{
+    border-bottom: 1px solid #333 !important;
+}
+
+.todo-options{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: end;
+}
+
+.todo-options i:hover {
+    cursor: pointer;
+}
+
+.fa-trash{
+    margin-right: 15px;
 }

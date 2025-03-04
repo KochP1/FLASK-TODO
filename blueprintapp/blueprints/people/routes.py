@@ -18,7 +18,7 @@ def index():
         user = Person.query.filter_by(email = email).first()
         if bcrypt.check_password_hash(user.password, password):
             login_user(user)
-            return render_template('core/index.html')
+            return redirect(url_for('todos.index'))
         else: 
             return render_template('people/index.html', message='Credenciales invalidas')
 
