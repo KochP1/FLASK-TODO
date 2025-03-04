@@ -12,13 +12,8 @@ def index():
     if request.method == 'GET':
         userId = current_user.pid
         topics = Topic.query.filter(Topic.pid == userId).all()
-        return render_template('todos/index.html', topics = topics)
-    elif request.method == 'POST':
-        userId = current_user.pid
-        topics = Topic.query.filter(Topic.pid == userId).all()
-        topId = request.form['topId']
+        topId = Topic.topId
         todos = Todo.query.filter(Todo.topId == topId).all()
-        print(todos)
         return render_template('todos/index.html', topics = topics, todos = todos)
 
 @todos.route('/create', methods = ['GET', 'POST'])
