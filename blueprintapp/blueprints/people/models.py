@@ -1,6 +1,7 @@
 from blueprintapp.app import db
+from flask_login import UserMixin
 
-class Person(db.Model):
+class Person(db.Model, UserMixin):
     __tablename__ = 'people'
 
     pid = db.Column(db.Integer, primary_key = True)
@@ -14,3 +15,6 @@ class Person(db.Model):
     
     def get_id(self):
         return self.pid
+    
+    def get_email(self):
+        return self.email

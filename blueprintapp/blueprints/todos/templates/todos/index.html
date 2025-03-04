@@ -2,10 +2,10 @@
 {% block title %} Todos {% endblock %}
 
 {% block content %}
-    <h1>Your to do's</h1>
+    <h1>Your to do's {{current_user.name}} {{current_user.lastName}}</h1>
     <ul>
-        {% for todo in todos %}
-            <li>{{todo}}</li>
+        {% for topic in topics%}
+            {{topic.name}}
         {% endfor %}
     </ul>
     <a href="{{url_for('todos.create')}}">Ceate todo</a>

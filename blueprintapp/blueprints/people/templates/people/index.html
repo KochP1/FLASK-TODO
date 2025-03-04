@@ -2,12 +2,12 @@
 {% block title %} People {% endblock %}
 
 {% block content %}
-    <h1>People</h1>
-    <ul>
-        {% for person in people %}
-            <li>{{person}}</li>
-        {% endfor %}
-    </ul>
-    <a href="{{url_for('people.create')}}">Create person</a>
-    <a href="{{url_for('core.index')}}">Home</a>
+    <form action="" method="post" class="people-form">
+        <p class="alert-message">{{message}}</p>
+        <h1>Sign in</h1>
+        <input type="email" placeholder="Email" name="email">
+        <input type="password" placeholder="Password" name="password">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{{url_for('people.create')}}">You don´t have an account?</a>
+    </form>
 {% endblock %}
