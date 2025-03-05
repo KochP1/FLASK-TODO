@@ -17,7 +17,7 @@ class Todo(db.Model):
 
     tid = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String, nullable=False)
-    done = db.Column(db.Boolean, nullable=False)
+    done = db.Column(db.Boolean)
     topId = db.Column(db.Integer, db.ForeignKey('topic.topId', name='fk_todo_topid'), nullable=False)  # Nombre de la clave foránea
 
     def __repr__(self):

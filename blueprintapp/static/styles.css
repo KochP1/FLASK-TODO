@@ -163,3 +163,82 @@ h1{
 .fa-trash{
     margin-right: 15px;
 }
+
+.btn-danger{
+    margin-right: 6px;
+    margin-bottom: 5px;
+}
+
+.modify-form{
+    display: flex;
+    gap: 5px;
+}
+
+.todo-options__container{
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+}
+
+.delete-btn{
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    margin-bottom: 15px;
+}
+
+.edit-btn{
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    margin-bottom: 15px;
+}
+
+
+.newTodo-form{
+    display: flex;
+    gap: 5px;
+}
+
+.newTodo-form input{
+    border: 1px solid #333;
+    background-color: transparent;
+    font-size: 17px;
+    width: 135px;
+    height: 30px;
+    margin-left: 5px;
+}
+
+.newTodo-form input:focus{
+    outline: none;
+}
+
+.newTodo-form button{
+    width: 70px !important;
+    height: 30px !important;
+    font-size: 17px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.todo-options button {
+    width: 70px !important;
+    height: 30px !important;
+    font-size: 17px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.modal-body input {
+    width: 100%;
+}
+
+
+
+

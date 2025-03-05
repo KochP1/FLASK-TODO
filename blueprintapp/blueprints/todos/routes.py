@@ -16,9 +16,31 @@ def index():
     print(f'Hello , {topics}: {todos}')
     return render_template('todos/index.html', topics = topics, todos = todos)
 
-@todos.route('/create', methods = ['GET', 'POST'])
-def create():
-    if request.method == 'GET':
-        return render_template('todos/create.html')
-    elif request.method == 'POST':
-        return ''
+@todos.route('/create_todo', methods = ['POST'])
+def create_todo():
+    description = request.form['description']
+    topid = request.form['topid']
+
+    todo = Todo(description = description, topId = topid)
+    db.session.add(todo)
+    db.session.commit()
+    return redirect(url_for('todos.index'))
+
+@todos.route('/delete_todo', methods = ['POST'])
+def delete_todo():
+    tid = request.form['tid']
+    todo = Todo.query.filter(Todo.tid == tid).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for('todos.index'))
+
+@todos.route('/create_topic', methods = ['POST'])
+def create_topic():
+    name = request.form['name']
+    pid = current_user.pid
+
+    topic = Topic(name = name, pid = pid)
+
+    db.session.add(topic)
+    db.session.commit()
+    return redirect(url_for('todos.index'))

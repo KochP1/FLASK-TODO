@@ -11,8 +11,8 @@
                     <h1>Hello, {{current_user.name}} {{current_user.lastName}}</h1> 
                 </div>
             <ul class="nav-list">
-                <li class="nav-item"><a href="#" class="nav-link">todos</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">tasks</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#editModal">Create list</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Create task</a></li>
                 <li class="nav-item switch">
                     <a class="toggle-theme" id="darkModeToggle" role="button">
                         <i class="fas mb-2 mr-1 fa-moon theme-icon"></i>
@@ -27,22 +27,55 @@
 
     <div class="main-wrapper">
             {% for topic in topics%}
-                <div class="todo__container">
+                <div class="todo__container" id="todo-list">
                     <input type="text" name="topic" class="list-input topic-input" value="{{topic.name}}">
                     {% for todo in todos %}
                         {% if topic.topId == todo.topId %}
-                            <div class="check-container">
-                                <input type="checkbox" class="checkbox">
-                                <input type="text" name="todo" class="list-input" value="{{todo.description}}">
-                            </div>
+                            <form action="{{url_for('todos.delete_todo')}}" method="post" class="modify-form">
+                                    <input type="checkbox" class="checkbox" name="done">
+                                    <input type="text" name="todo" class="list-input" value="{{todo.description}}">
+                                    <input type="hidden" name="tid" value="{{todo.tid}}">
+                                    <button class="edit-btn">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="delete-btn" type="submit">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                            </form>
                         {% endif %}
                     {% endfor %}
-                    <div class="todo-options">
-                        <i class="fa-solid fa-plus"></i>
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <i class="fa-solid fa-trash"></i>
+                    <div class="todo-options__container">
+                        <form action="{{url_for('todos.create_todo')}}" class="newTodo-form" id="newTodo-form" method="post">
+                            <input type="text" placeholder="Add a new Todo!!" name="description">
+                            <input type="hidden" name="topid" value="{{topic.topId}}">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                        <form class="todo-options">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
                     </div>
                 </div>
             {% endfor %}
     </div>
+
+    <!-- Modal Edit list-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editModalLabel">New Topic!!</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{url_for('todos.create_topic')}}" method="post">
+            <div class="modal-body">
+                <input type="text" placeholder="Topic name" name="name">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
 {% endblock %}
