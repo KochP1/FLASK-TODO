@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for, Blueprint
+from flask import request, render_template, redirect, url_for, Blueprint, jsonify
 from flask_login import current_user
 
 from blueprintapp.app import db
@@ -13,7 +13,6 @@ def index():
     topics = Topic.query.filter(Topic.pid == userId).all()
     topId = Topic.topId
     todos = Todo.query.filter(Todo.topId == topId).all()
-    print(f'Hello , {topics}: {todos}')
     return render_template('todos/index.html', topics = topics, todos = todos)
 
 @todos.route('/create_todo', methods = ['POST'])
@@ -44,3 +43,19 @@ def create_topic():
     db.session.add(topic)
     db.session.commit()
     return redirect(url_for('todos.index'))
+
+@todos.route('/delete_topic', methods = ['POST'])
+def delete_topic():
+    if request.method == 'POST':
+        topid = request.form['topid']
+        topic = Topic.query.filter(Topic.topId == topid).first()
+
+        if topic:
+            db.session.delete(topic)
+            db.session.commit()
+            return redirect(url_for('todos.index'))
+        else:
+            return redirect(url_for('todos.index'))
+    else:
+        print('Error metodo')
+        return ''
