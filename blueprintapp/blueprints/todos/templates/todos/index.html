@@ -59,6 +59,20 @@
                     </div>
                 </div>
             {% endfor %}
+
+            {% for task in tasks %}
+                <div class="task__container">
+                    <div>
+                        <input type="text" value="{{task.tittle}}" class="list-input topic-input">
+                    </div>
+                    <div class="task-body">
+                        <input type="text" value="{{task.taskContent}}" class="list-input task-input__content">
+                    </div>
+                    <div class="task__footer">
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            {% endfor %}
     </div>
 
     <!-- Modal Create list-->
