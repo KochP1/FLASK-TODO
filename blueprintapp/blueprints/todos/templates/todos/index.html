@@ -28,20 +28,20 @@
     <div class="main-wrapper">
             {% for topic in topics%}
                 <div class="todo__container" id="todo-list">
-                    <input type="text" name="topic" class="list-input topic-input" value="{{topic.name}}">
+                    <div class="topic__container">
+                        <input type="text" name="topic" class="list-input topic-input" value="{{topic.name}}" id="topic-name-{{topic.topId}}" onchange="update_topic({{topic.topId}}) ">
+                    </div>
                     {% for todo in todos %}
                         {% if topic.topId == todo.topId %}
-                            <form action="{{url_for('todos.delete_todo')}}" method="post" class="modify-form">
-                                    <input type="checkbox" class="checkbox" name="done">
-                                    <input type="text" name="todo" class="list-input" value="{{todo.description}}">
-                                    <input type="hidden" name="tid" value="{{todo.tid}}">
-                                    <button class="edit-btn">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <button class="delete-btn" type="submit">
+                            <div class="modify-form">
+                                    <input type="checkbox" class="checkbox" name="done" id="done-checkbox-{{ todo.tid }}"
+                                    {% if todo.done %}checked{% endif %}
+                                    onchange="toggleDone({{ todo.tid }})">
+                                    <input type="text" name="todo" class="list-input" value="{{todo.description}}" id="description-input-{{ todo.tid }}" onchange="update_todo({{ todo.tid }})">
+                                    <button class="delete-btn" onclick="delete_todo({{todo.tid}})">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
-                            </form>
+                                </div>
                         {% endif %}
                     {% endfor %}
                     <div class="todo-options__container">
@@ -51,10 +51,11 @@
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
 
-                        <form class="todo-options" action="{{url_for('todos.delete_topic')}}" method="post">
-                            <input type="hidden" name="topid" value="{{topic.topId}}">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+
+                        <div class="todo-options">
+                            <button type="button" class="btn btn-danger" onclick="del_top({{ topic.topId }})">Delete</button>
+                        </div>
+
                     </div>
                 </div>
             {% endfor %}
@@ -73,7 +74,7 @@
                 <input type="text" placeholder="Topic name" name="name">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </form>
       </div>
