@@ -63,13 +63,14 @@
             {% for task in tasks %}
                 <div class="task__container">
                     <div>
-                        <input type="text" value="{{task.tittle}}" class="list-input topic-input">
+                        <input type="text" value="{{task.tittle}}" class="list-input topic-input" id="task-title-{{task.taskId}}" onchange="update_title({{task.taskId}})">
                     </div>
                     <div class="task-body">
-                        <input type="text" value="{{task.taskContent}}" class="list-input task-input__content">
+                        <input type="text" value="{{task.taskContent}}" class="list-input task-input__content" id="task-content-{{task.taskId}}" onchange="update_content({{task.taskId}})">
                     </div>
                     <div class="task__footer">
-                        <button class="btn btn-danger">Delete</button>
+                        <input type="hidden" value="{{task.taskId}}">
+                        <button class="btn btn-danger" onclick="delete_task({{task.taskId}})">Delete</button>
                     </div>
                 </div>
             {% endfor %}

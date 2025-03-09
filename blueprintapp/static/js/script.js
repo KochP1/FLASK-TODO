@@ -38,6 +38,8 @@ function update_topic(topid) {
     })
 }
 
+// todos functions
+
 function update_todo(tid) {
     // Obtener el valor del input
     let description = document.getElementById(`description-input-${tid}`).value;
@@ -84,19 +86,16 @@ function delete_todo(tid) {
 }
 
 function toggleDone(tid) {
-    // Obtener el estado del checkbox
     const done = document.getElementById(`done-checkbox-${tid}`).checked;
 
-    // Construir la URL
     const url = `/todos/toggle_done/${tid}`;
 
-    // Enviar la solicitud PATCH con el cuerpo en formato JSON
     fetch(url, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ done: done }),  // Enviar el estado del checkbox
+        body: JSON.stringify({ done: done }),
     })
     .then(response => {
         if (response.ok) {
@@ -108,4 +107,69 @@ function toggleDone(tid) {
     .catch(error => {
         console.error(`Error: ${error}`);
     });
+}
+
+// tasks functions
+
+function delete_task(taskId) {
+    const url = `/todos/delete_task/${taskId}`;
+
+    if(confirm("Do you want to delete the task?")) {
+        fetch(url, {
+            method: 'DELETE'
+        }).then(response => {
+            if (response.ok) {
+                console.log('Operacion exitosa');
+                window.location.href = '/todos/';
+            } else {
+                console.log("We couldn't delete the task");
+            }
+        }).catch(error => {
+            console.error(`Error: ${error}`);
+        })
+    }
+}
+
+function update_title(taskId) {
+    const title = document.getElementById(`task-title-${taskId}`).value;
+    const url = `/todos/update_title/${taskId}`;
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title: title })
+    }).then(response => {
+        if(response.ok) {
+            console.log("Succes");
+            window.location.href = '/todos/';
+        } else {
+            console.log("Failed");
+        }
+    }).catch(error => {
+        console.error(`Error: ${error}`);
+    })
+}
+
+function update_content(taskId) {
+    const content = document.getElementById(`task-content-${taskId}`).value;
+    const url = `/todos/update_content/${taskId}`;
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content: content })
+    }).then(response => {
+        if(response.ok) {
+            console.log("Succes");
+            window.location.href = '/todos/';
+        } else {
+            console.log("Failed");
+        }
+    }).catch(error => {
+        console.error(`Error: ${error}`);
+    })
 }

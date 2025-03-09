@@ -118,3 +118,46 @@ def del_top(topId):
         return jsonify({"message": "Tema eliminado correctamente."}), 200
     else:
         return jsonify({"error": "El tema no existe."}), 404
+    
+@todos.route('/delete_task/<int:taskId>', methods = ['DELETE'])
+def delete_task(taskId):
+    task = Task.query.filter(Task.taskId == taskId).first()
+
+    if task:
+        db.session.delete(task)
+        db.session.commit()
+        return jsonify({"message": "Task delete"}), 200
+    else :
+        return jsonify({"message": "There was an error deleting the task"}), 404
+    
+@todos.route('/update_title/<int:taskId>', methods = ['PATCH'])
+def update_title(taskId):
+    task = Task.query.filter(Task.taskId == taskId).first()
+
+    if task:
+        data = request.get_json()
+
+    # Actualizar el campo 'description' si está presente en los datos
+    if 'title' in data:
+        task.tittle = data['title']
+
+    # Guardar los cambios en la base de datos
+    db.session.commit()
+
+    return jsonify({"message": "Task actualizada correctamente.", "todo": {"tid": task.taskId, "nombre": task.tittle}}), 200
+
+@todos.route('/update_content/<int:taskId>', methods = ['PATCH'])
+def update_content(taskId):
+    task = Task.query.filter(Task.taskId == taskId).first()
+
+    if task:
+        data = request.get_json()
+
+    # Actualizar el campo 'description' si está presente en los datos
+    if 'content' in data:
+        task.taskContent = data['content']
+
+    # Guardar los cambios en la base de datos
+    db.session.commit()
+
+    return jsonify({"message": "Task actualizada correctamente.", "todo": {"tid": task.taskId, "contenido": task.taskContent}}), 200
