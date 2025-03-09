@@ -91,10 +91,6 @@ h1{
     height: 50px;
 }
 
-.nav-link:hover{
-    color: #08568a !important;
-}
-
 .fa-moon{
     color: #000;
 }
@@ -279,6 +275,48 @@ h1{
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+}
+
+/* dark mode */
+
+.todos-nav.dark-mode{
+    background-color: #121212 !important;
+    color: #fff !important;
+    box-shadow: 0px 4px 6px #fff;
+}
+
+body.dark-mode{
+    background-color: #121212 !important;
+}
+
+.todo__container.dark-mode{
+    border-color: #fff;
+    color: #fff !important;
+}
+
+.list-input.dark-mode{
+    color: #fff !important;
+}
+
+.topic-input.dark-mode{
+    border-bottom: 1px solid #fff !important;
+}
+
+.delete-btn.dark-mode{
+    color: #fff;
+}
+
+.newTodo-form.dark-mode input{
+    border-color: #fff;
+    color: #fff;
+}
+
+.theme-icon.dark-mode{
+    color: #fff;
+}
+
+.task__container.dark-mode{
+    border-color: #fff;
 }
 
 
