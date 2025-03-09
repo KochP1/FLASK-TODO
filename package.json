@@ -1,0 +1,23 @@
+{
+  "name": "flask-todo",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KochP1/FLASK-TODO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KochP1/FLASK-TODO/issues"
+  },
+  "homepage": "https://github.com/KochP1/FLASK-TODO#readme",
+  "description": "",
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}
