@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const taskContainer = document.querySelectorAll(".task__container");
         taskContainer.forEach( task => task.classList.add("dark-mode"));
 
+        const trash = document.querySelectorAll(".trash-btn");
+        trash.forEach( trash => trash.classList.add("dark-mode"));
+
     }
 
     function disableDarkMode() {
@@ -82,6 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const taskContainer = document.querySelectorAll(".task__container");
         taskContainer.forEach( task => task.classList.remove("dark-mode"));
+
+        const trash = document.querySelectorAll(".trash-btn");
+        trash.forEach( trash => trash.classList.remove("dark-mode"));
 
     }
 });

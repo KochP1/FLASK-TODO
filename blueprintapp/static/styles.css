@@ -184,6 +184,7 @@ h1{
 }
 
 .delete-btn{
+    width: max-content;
     border: none;
     padding: 0;
     margin: 0;
@@ -232,6 +233,14 @@ h1{
 
 .modal-body input {
     width: 100%;
+}
+
+.trash-btn{
+    width: max-content;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
 }
 
 /* TASKS */
@@ -317,6 +326,10 @@ body.dark-mode{
 
 .task__container.dark-mode{
     border-color: #fff;
+}
+
+.trash-btn.dark-mode{
+    color: #fff;
 }
 
 

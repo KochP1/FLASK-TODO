@@ -34,14 +34,16 @@
                     {% for todo in todos %}
                         {% if topic.topId == todo.topId %}
                             <div class="modify-form">
+                                <div class="list__container">
                                     <input type="checkbox" class="checkbox" name="done" id="done-checkbox-{{ todo.tid }}"
                                     {% if todo.done %}checked{% endif %}
                                     onchange="toggleDone({{ todo.tid }})">
                                     <input type="text" name="todo" class="list-input" value="{{todo.description}}" id="description-input-{{ todo.tid }}" onchange="update_todo({{ todo.tid }})">
                                     <button class="delete-btn" onclick="delete_todo({{todo.tid}})">
-                                        <i class="fa-solid fa-trash"></i>
+                                        <i class="fa-solid fa-xmark"></i>
                                     </button>
                                 </div>
+                            </div>
                         {% endif %}
                     {% endfor %}
                     <div class="todo-options__container">
@@ -53,7 +55,9 @@
 
 
                         <div class="todo-options">
-                            <button type="button" class="btn btn-danger" onclick="del_top({{ topic.topId }})">Delete</button>
+                            <button type="button" class="trash-btn" onclick="del_top({{ topic.topId }})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
 
                     </div>
