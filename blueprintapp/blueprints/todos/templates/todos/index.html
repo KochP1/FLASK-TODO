@@ -8,8 +8,22 @@
                     <a href="{{url_for('todos.index')}}" class="nav-link">
                         <img src="../../../../img/to-do-list.png" alt="Todo logo" class="img-logo">
                     </a>
-                    <h1>Hello, {{current_user.name}} {{current_user.lastName}}</h1> 
+                    <h1>Hello, {{current_user.name}} {{current_user.lastName}}</h1>
                 </div>
+                <div class="toggle-menu">
+                    <i class="fa-solid fa-bars" onclick=showSidebar()></i>
+                </div>
+                <ul class="sidebar">
+                    <li onclick=hideSidebar()><i class="fa-solid fa-xmark"></i></li>
+                    <li class="side-item"><a href='#'>Inicio</a></li>
+                    <li class="side-item switch switch__mobile">
+                        <a class="btn nav-boton mr-2" id="darkModeToggle_mobile" role="button">
+                            <i class="fas mb-2 mr-1 fa-moon theme-icon"></i>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                    </li>
+                </ul>
             <ul class="nav-list">
                 <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#editModal">Create list</a></li>
                 <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#taskModal">Create task</a></li>
@@ -120,5 +134,15 @@
   </div>
     <script src="../../../../js/script.js"></script>
     <script src="../../../../js/darkMode.js"></script>
+    <script>
+        function showSidebar() {
+            const sidebar = document.querySelector(".sidebar")
+            sidebar.style.display = "flex"
+        }
+        function hideSidebar() {
+            const sidebar = document.querySelector(".sidebar")
+            sidebar.style.display = "none"
+        }
+    </script>
   
 {% endblock %}
