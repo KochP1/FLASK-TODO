@@ -121,12 +121,13 @@ h1{
 .sidebar li{
     width: 100%;
     list-style: none;
-    text-align: left; /* Añade esta propiedad para alinear el texto a la izquierda */
-    padding-left: 0
+    text-align: left;
+    padding-left: 0;
 }
 .sidebar li a{
     width: 100%;
     color: #000;
+    font-weight: 500;
     text-decoration: none;
     text-align: left;
 }
@@ -368,6 +369,29 @@ body.dark-mode{
     color: #fff;
 }
 
+.sidebar.dark-mode li a{
+    color: #fff !important;
+}
+
+.modal.dark-mode div{
+    background-color: #121212 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+.btn-close.dark-mode{
+    background-color: #fff !important;
+}
+
+.modal.dark-mode div input{
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+.modal.dark-mode div input:focus{
+    outline: none !important;
+}
+
 /* Responsive design */
 
 @media (max-width: 450px) {
@@ -413,6 +437,10 @@ body.dark-mode{
 
     .sidebar{
         width: 100%;
+    }
+
+    .user-container-mobile{
+        margin-left: 8px;
     }
 }
 
